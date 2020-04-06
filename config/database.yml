@@ -1,19 +1,17 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  host: postgres
-  username: postgres
-  password:
+  host: <%= ENV['PGHOST'] %>
+  username: <%= ENV['PGUSER'] %>
+  password: <%= ENV['PGPASSWORD'] %>
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 development:
   <<: *default
-  database: dockerize_aws_demo_development
+  database: <%= ENV['PGDBNAME'] %>_development
 test:
   <<: *default
-  database: dockerize_aws_demo_test
+  database: <%= ENV['PGDBNAME'] %>_test
 production:
   <<: *default
-  database: dockerize_aws_demo_production
-  username: dockerize_aws_demo
-  password: <%= ENV['DOCKERIZE_AWS_DEMO_DATABASE_PASSWORD'] %>
+  database: <%= ENV['PGDBNAME'] %>_production

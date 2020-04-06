@@ -13,5 +13,11 @@ services:
    - .:/myapp
   ports:
    - "3000:3000"
+  environment:
+    PGHOST: postgres
+    PGUSER: postgres
+    PGPASSWORD: password
+    PGDBNAME: dockerize_aws_demo
+    RAILS_MAX_THREADS: 5
   depends_on:
    - postgres
