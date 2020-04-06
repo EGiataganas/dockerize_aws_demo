@@ -35,8 +35,7 @@ RUN mkdir /myapp
 WORKDIR /myapp
 
 # Add our Gemfile
-COPY Gemfile /myapp/Gemfile
-COPY Gemfile.lock /myapp/Gemfile.lock
+COPY Gemfile* /myapp/
 
 # Install gems
 RUN bundle install
