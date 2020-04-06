@@ -9,7 +9,15 @@ RUN apt-get update -qq \
          # Needed for postgres gem
     libpq-dev \
          # Needed for asset compilation
-    nodejs
+    nodejs \
+    # The following are used to trim down the size of the image by removing unneeded data
+  && apt-get clean autoclean \
+  && apt-get autoremove -y \
+  && rm -rf \
+    /var/lib/apt \
+    /var/lib/dpkg \
+    /var/lib/cache \
+    /var/lib/log
 
 # Install bundler gem
 RUN gem install bundler --no-doc
