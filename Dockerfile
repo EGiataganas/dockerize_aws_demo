@@ -33,7 +33,6 @@ RUN gem install bundler --no-doc
 
 # Create a directory for our application
 # and set it as the working directory
-RUN mkdir $APP_HOME
 WORKDIR $APP_HOME
 
 # Add our Gemfile
