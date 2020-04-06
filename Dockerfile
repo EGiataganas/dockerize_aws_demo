@@ -1,6 +1,8 @@
 # Base image
 FROM ruby:2.6.5
 
+ARG APP_HOME=/dockerize_aws_demo
+
 # Installation of dependencies
 RUN apt-get update -qq && \
     apt-get install -y \
@@ -31,14 +33,14 @@ RUN gem install bundler --no-doc
 
 # Create a directory for our application
 # and set it as the working directory
-RUN mkdir /myapp
-WORKDIR /myapp
+RUN mkdir $APP_HOME
+WORKDIR $APP_HOME
 
 # Add our Gemfile
-COPY Gemfile* /myapp/
+COPY Gemfile* $APP_HOME/
 
 # Install gems
 RUN bundle install
 
 # Run our app
-COPY . /myapp
+COPY . $APP_HOME
