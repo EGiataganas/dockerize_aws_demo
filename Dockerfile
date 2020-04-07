@@ -39,7 +39,7 @@ WORKDIR $APP_HOME
 COPY Gemfile* $APP_HOME/
 
 # Install gems
-RUN bundle install
+RUN bundle check || bundle install
 
 # Run our app
 COPY . $APP_HOME
