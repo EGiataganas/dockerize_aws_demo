@@ -41,5 +41,8 @@ COPY Gemfile* $APP_HOME/
 # Install gems
 RUN bundle check || bundle install
 
-# Run our app
+# Copy over our application code
 COPY . $APP_HOME
+
+# Run our app
+CMD bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"

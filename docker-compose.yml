@@ -8,7 +8,6 @@ services:
 
  web:
   build: .
-  command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
   volumes:
    - .:/dockerize_aws_demo
    - gem_cache:/usr/local/bundle/gems
