@@ -22,6 +22,8 @@ services:
    - "3000:3000"
   environment:
     DATABASE_URL: postgres://postgres@postgres:5432
+  stdin_open: true
+  tty: true
   depends_on:
    - postgres
 
