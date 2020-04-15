@@ -13,5 +13,10 @@ echo "Connected to postgres..."
 echo "Bundling gems"
 bundle check || bundle install
 
+echo "Creating the database..."
+bundle exec rails db:create
+echo "Migrating the database..."
+bundle exec rails db:migrate
+
 # parameters will pass to bundle exec from docker-compose
 bundle exec "$@"
