@@ -18,5 +18,12 @@ bundle exec rails db:create
 echo "Migrating the database..."
 bundle exec rails db:migrate
 
+if [ "$2" == 'server' ]; then
+  if [ -f /dockerize_aws_demo/tmp/pids/server.pid ]; then
+    echo 'Deleting old server pid file ...'
+    rm -f /dockerize_aws_demo/tmp/pids/server.pid
+  fi
+fi
+
 # parameters will pass to bundle exec from docker-compose
 bundle exec "$@"
