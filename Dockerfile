@@ -1,6 +1,9 @@
 # Base image
 FROM ruby:2.6.5
 
+# Sets an environment variable with the bundle directory
+ENV BUNDLE_PATH=/bundle
+
 # Sets an argument variable with the application directory
 ARG APP_HOME=/dockerize_aws_demo
 
@@ -38,14 +41,5 @@ RUN gem install bundler --no-doc
 # and set it as the working directory
 WORKDIR $APP_HOME
 
-# Add our Gemfile
-COPY Gemfile* $APP_HOME/
-
-# Install gems
-RUN bundle check || bundle install
-
-# Copy over our application code
-COPY . $APP_HOME
-
-# Run our app
-CMD bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+# Sets an interactive shell as default command when the container starts
+CMD ["/bin/sh"]
